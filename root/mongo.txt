@@ -1,0 +1,94 @@
+Go to bin folder of mongodb
+
+1.Open Cmd and type mongod --dbpath d:\mongodb
+2.Open another cmd and type start mongo.exe
+3.Create/Open new database use dbname
+4.List all available dbs: show dbs
+5.Insert new data to db: db.tableName.insert(Json data)
+6.DropDatabase db.dropDatabase()
+
+Creating Table(Collection):
+Syntax db.createCollection(name, options)
+db.createCollection("mycol", { capped : true, autoIndexId : true, size : 
+   6142800, max : 10000 } )
+
+capped	Boolean	(Optional) If true, enables a capped collection. Capped collection is a fixed size collection that automatically overwrites its oldest entries when it reaches its maximum size. If you specify true, you need to specify size parameter also.
+autoIndexId	Boolean	(Optional) If true, automatically create index on _id field.s Default value is false.
+size	number	(Optional) Specifies a maximum size in bytes for a capped collection. If capped is true, then you need to specify this field also.
+max	number	(Optional) Specifies the maximum number of documents allowed in the capped collection.
+
+List Collection
+show collections
+
+Drop Collection
+db.COLLECTION_NAME.drop()
+
+INSERT TO DB
+db.COLLECTION_NAME.insert(document)
+
+READ ALL
+db.COLLECTION_NAME.find().pretty()
+
+AND
+db.mycol.find(
+   {
+      $and: [
+         {key1: value1}, {key2:value2}
+      ]
+   }
+).pretty()
+
+OR
+db.mycol.find(
+   {
+      $or: [
+         {key1: value1}, {key2:value2}
+      ]
+   }
+).pretty()
+
+UPDATE(One field)
+db.COLLECTION_NAME.update(SELECTION_CRITERIA, UPDATED_DATA)
+
+SAVE(Update whole document)
+db.COLLECTION_NAME.save({_id:ObjectId(),NEW_DATA})
+
+REMOVE(Delete Data)
+db.COLLECTION_NAME.remove(DELLETION_CRITTERIA)  //All
+db.COLLECTION_NAME.remove(DELETION_CRITERIA,1)	//Just 1
+
+LIST ONLY desired field in query
+db.COLLECTION_NAME.find({},{KEY:1})
+
+PAGINATION
+limit()
+skip()
+
+SORT
+db.COLLECTION_NAME.find().sort({KEY:1}) //Value 1 and -1
+
+INDEX(Do more research)
+
+AGGREGATE(Mapping result to different format)
+db.COLLECTION_NAME.aggregate(AGGREGATE_OPERATION)
+
+PIPELINING
+Similar to stream pipelining one output another process input.
+
+REPLICATION
+Saving database to different servers
+
+Sharding
+Easy Scaling by saving data into many machines in network
+
+DUMP(Backup Database)
+RESTORE
+
+
+
+
+
+
+
+
+
